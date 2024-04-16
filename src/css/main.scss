@@ -1,0 +1,171 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  line-height: 1;
+  font-size: 20px;
+  background-color: #333;
+  color: #fff;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+// Attributes
+
+// CSS
+
+#app {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  justify-content: center;
+  width: 1400px;
+  margin: 0 auto;
+
+  @media (max-width: 1399.9px) {
+    width: 1200px;
+  }
+
+  @media (max-width: 1199.9px) {
+    width: 1024px;
+  }
+}
+
+.header__container {
+  background-color: #7a93ff;
+  width: 100%;
+}
+
+.main__container {
+  flex: 1 1 auto;
+  min-height: 100%;
+  width: 100%;
+  // background-image: url(../assets/arena.jpg);
+  // background-repeat: no-repeat;
+  // background-size: 80% auto;
+  // background-position: left;
+  display: flex;
+  justify-content: end;
+
+  .image__container {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    .image__sss {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      position: relative;
+
+      .points__container {
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        border-radius: 24px;
+        border: 3px solid red;
+      }
+    }
+
+    img {
+      width: 100%;
+      max-height: 100%;
+    }
+
+    .proverka {
+      width: 100%;
+    }
+  }
+
+  .side_panel__container {
+    width: 20%;
+    background-repeat: no-repeat;
+    color: #fff;
+    background-color: #3c8114;
+    padding: 20px 0;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    &::-webkit-scrollbar {
+      /* chrome based */
+      width: 0px; /* ширина scrollbar'a */
+      background: transparent; /* опционально */
+    }
+
+    ul {
+      display: flex;
+      overflow-y: auto;
+      flex-direction: column;
+      height: 800px;
+
+      // &::-webkit-scrollbar {
+      //   /* chrome based */
+      //   width: 0px; /* ширина scrollbar'a */
+      //   background: transparent; /* опционально */
+      // }
+    }
+
+    .side_panel-item__container {
+      width: 80%;
+      margin: 15px auto;
+      border: solid 2px #000000;
+      border-radius: 5px;
+      padding: 5px;
+      display: block;
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      .hor_line {
+        width: 100%;
+        height: 0;
+        border: 0.5px solid black;
+        display: block;
+      }
+    }
+  }
+}
+
+.footer__container {
+  background-color: #000000;
+  width: 100%;
+}
