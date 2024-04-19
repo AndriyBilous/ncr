@@ -292,6 +292,7 @@ export default {
     await firebaseRef.on("value", (snapshot) => {
       let data = snapshot.val();
       this.pointsData = [...Object.values(data.points)];
+      console.log("updated");
     });
   },
 
@@ -322,7 +323,12 @@ export default {
           if (
             Object.values(el)[1].replaceAll('"', "") === this.timersData[i].name
           ) {
-            this.timersData[i].lastDropTime = Object.values(el)[2];
+            console.log(Object.values(el)[2]);
+            // console.log("data " + Math.round(new Date().getTime() / 1000.0));
+            const convertedTime = new Date(
+              Object.values(el)[2] - 14080000
+            ).toLocaleTimeString("uk-Ua");
+            this.timersData[i].lastDropTime = convertedTime;
           }
         }
       });
