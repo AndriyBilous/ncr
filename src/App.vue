@@ -323,7 +323,7 @@ export default {
           if (
             Object.values(el)[1].replaceAll('"', "") === this.timersData[i].name
           ) {
-            console.log(Object.values(el)[2]);
+            // console.log(Object.values(el)[2]);
             // console.log("data " + Math.round(new Date().getTime() / 1000.0));
             const convertedTime = new Date(
               Object.values(el)[2] - 14080000
@@ -332,11 +332,13 @@ export default {
           }
         }
       });
+      this.timersData.sort((a, b) =>
+        a.lastDropTime > b.lastDropTime ? 1 : -1
+      );
     },
-  },
-
-  firebase: {
-    pointsData: firebaseRef,
+    timersData() {
+      this.timersData.map((a) => console.log(a.lastDropTime));
+    },
   },
 };
 </script>
