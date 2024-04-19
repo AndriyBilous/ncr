@@ -33,6 +33,22 @@
 
 <script>
 import LocationsInfo from "./components/LocationsInfo.vue";
+import firebase from "firebase/app";
+import "firebase/database";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBWYhW1v5ihah_48rKZvQoXLTumzCxvhq8",
+  authDomain: "pyarena-91d35.firebaseapp.com",
+  databaseURL:
+    "https://pyarena-91d35-default-rtdb.europe-west1.firebasedatabase.app/",
+  projectId: "pyarena-91d35",
+  storageBucket: "pyarena-91d35.appspot.com",
+  messagingSenderId: "827209140628",
+  appId: "1:827209140628:web:4db30ac6d56775b8832781",
+};
+
+firebase.initializeApp(firebaseConfig);
+const firebaseRef = firebase.database().ref("/");
 
 export default {
   name: "App",
@@ -269,8 +285,16 @@ export default {
         },
       ],
       activeTimers: "",
+      pointsData: [],
     };
   },
+  async created() {
+    await firebaseRef.on("value", (snapshot) => {
+      let data = snapshot.val();
+      this.pointsData = [...Object.values(data.points)];
+    });
+  },
+
   methods: {
     handleScrollOnClick(e) {
       const id = e.target.attributes[1].value;
@@ -284,12 +308,29 @@ export default {
       });
 
       this.activeTimers = id;
-      console.log(this.activeTimers);
     },
 
     handleChangeActiveOnClick(id) {
       this.activeTimers = id;
     },
+  },
+
+  watch: {
+    pointsData() {
+      this.pointsData.map((el) => {
+        for (let i = 0; i < this.pointsData.length; i++) {
+          if (
+            Object.values(el)[1].replaceAll('"', "") === this.timersData[i].name
+          ) {
+            this.timersData[i].lastDropTime = Object.values(el)[2];
+          }
+        }
+      });
+    },
+  },
+
+  firebase: {
+    pointsData: firebaseRef,
   },
 };
 </script>
